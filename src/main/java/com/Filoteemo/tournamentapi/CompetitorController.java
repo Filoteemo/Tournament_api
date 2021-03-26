@@ -24,7 +24,7 @@ public class CompetitorController {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML}) // mediatyper som kan vises 
 	public List<Competitor> getCompetitors() { // GET metode som returnerer alle objekter i liste
 		
-		System.out.println("Metoden getCompetitors kallet på");
+		System.out.println("Metoden getCompetitors() kallet på");
 		
 		return dao.getCompetitors();
 	}
