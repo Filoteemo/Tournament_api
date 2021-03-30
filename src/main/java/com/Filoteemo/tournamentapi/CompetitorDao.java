@@ -99,6 +99,21 @@ public class CompetitorDao {
 			catch(Exception e){
 				System.out.println(e);
 			}
-		} 
+		}
+		
+		public Competitor deleteCompetitor(int id) {
+			String sql = "delete from competitor where id="+id;
+			Competitor c = new Competitor();
+			try {
+			Statement st = connect.createStatement();
+			//ResultSet rs = st.executeQuery(sql);
+			st.execute(sql);
+		   }
+			catch(Exception e) {
+				System.out.println(e);
+			}
+			return c;
+			
+		}
 		
 }

@@ -1,6 +1,8 @@
 package com.Filoteemo.tournamentapi;
 
 import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -43,5 +45,13 @@ public class CompetitorController {
 		System.out.println(c); // prints the result from the insert in the console
 		dao.createCompetitor(c);
 		return c;
+	}
+	
+	@DELETE
+	@Path("competitor/{id}")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Competitor deleteCompetitor(@PathParam("id")int id) {
+		System.out.println("Metoden deleteCompetitor() kallet på");
+		return dao.getCompetitor(id);
 	}
 }
