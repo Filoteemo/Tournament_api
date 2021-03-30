@@ -49,9 +49,12 @@ public class CompetitorController {
 	
 	@DELETE
 	@Path("competitor/{id}")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Competitor deleteCompetitor(@PathParam("id")int id) {
 		System.out.println("Metoden deleteCompetitor() kallet på");
-		return dao.getCompetitor(id);
+		Competitor c = dao.getCompetitor(id);
+		if(c.getId() != 0) {
+			dao.deleteCompetitor(id);
+		}
+		return c;
 	}
 }

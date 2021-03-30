@@ -101,19 +101,16 @@ public class CompetitorDao {
 			}
 		}
 		
-		public Competitor deleteCompetitor(int id) {
-			String sql = "delete from competitor where id="+id;
-			Competitor c = new Competitor();
+		public void deleteCompetitor(int id) {
+			String sql = "delete from competitor where id=?";
 			try {
-			Statement st = connect.createStatement();
-			//ResultSet rs = st.executeQuery(sql);
-			st.execute(sql);
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setInt(1, id);
+			st.executeUpdate();
 		   }
 			catch(Exception e) {
 				System.out.println(e);
 			}
-			return c;
-			
 		}
 		
 }
