@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class CompetitorDao {
 			
 			String sql = "select * from competitor"; // spørring som leser alle rader fra tabell i db
 			try {
-			Statement st = connect.createStatement(); 
+			Statement st = connect.createStatement();  // lager statement
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) { //looper igjennom tabellen så lenge det er rader med data
 				Competitor c = new Competitor();
@@ -84,7 +85,7 @@ public class CompetitorDao {
 					return c;
 				}
 		
-		public void createCompetitor(Competitor c) { // method for creating new competitor
+		public void createCompetitor(Competitor c) { // method for creating one new competitor
 			String sql = "insert into competitor values (?,?,?,?)";
 			
 			try {
@@ -98,6 +99,27 @@ public class CompetitorDao {
 			}
 			catch(Exception e){
 				System.out.println(e);
+			}
+		}
+		
+		public void createCompetitors(ArrayList<Competitor> competitors) { // method for creating several new competitors 
+			
+			Iterator <Competitor> itr = competitors.iterator();
+			while(itr.hasNext()) {
+				String sql = "insert into competitor values (?,?,?,?)";
+				Competitor c = new Competitor();
+				try {
+					PreparedStatement st = connect.prepareStatement(sql);
+					
+					st.setInt(1, c.getId());
+					st.setString(2, c.getName());
+					st.setInt(3, c.getWeight());
+					st.setString(4, c.getCountry());
+					st.executeUpdate();
+				}
+				catch(Exception e){
+					System.out.println(e);
+				}
 			}
 		}
 		

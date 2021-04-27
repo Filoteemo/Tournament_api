@@ -1,7 +1,7 @@
 package com.Filoteemo.tournamentapi;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Iterator;
 
 
 /**
@@ -45,6 +46,23 @@ public class CompetitorController {
 		System.out.println(c); // prints the result from the insert in the console
 		dao.createCompetitor(c);
 		return c;
+	}
+	
+	@POST
+	@Path("competitors")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public ArrayList<Competitor> createCompetitors(ArrayList<Competitor> competitors) { // method returns an arraylist of objects
+		
+		Iterator <Competitor> itr = competitors.iterator();
+		while(itr.hasNext()) {
+		Competitor c = itr.next();
+		System.out.println(c.getId());
+		System.out.println(c.getName());
+		System.out.println(c.getWeight());
+		System.out.println(c.getCountry());
+		}
+		dao.createCompetitors(competitors);
+		return competitors;
 	}
 	
 	@DELETE
