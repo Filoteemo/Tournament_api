@@ -24,8 +24,8 @@ public class CompetitorDao {
 		   public CompetitorDao() { // db connector constructor
 			
 			String url = "jdbc:mysql://localhost:3306/competition";
-			String username = "root";
-			String password = "EayfruRm";
+			String username = "";
+			String password = "";
 			
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
