@@ -75,4 +75,11 @@ public class CompetitorController {
 		}
 		return c;
 	}
+	
+	@GET //type of call
+	@Path("allcompetitors") //path to call from 
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON}) //what data method produces
+	public List<Competitor> getAllCompetitors(){
+		return dao.getCompetitors();
+	}
 }
